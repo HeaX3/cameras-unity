@@ -1,0 +1,22 @@
+{
+  "name": "com.heax3.cameras-unity",
+  "version": "1.0.0",
+  "displayName": "Cameras",
+  "description": "Framework to create camera rigs.",
+  "unity": "2022.3",
+  "unityRelease": "12f1",
+  "documentationUrl": "https://github.com/HeaX3/cameras-unity",
+  "licensesUrl": "https://github.com/HeaX3/cameras-unity",
+  "keywords": [],
+  "dependencies": {
+    "com.unity.render-pipelines.universal": "",
+    "com.unity.inputsystem": "",
+    "com.heax3.unity-essentials": "",
+    "com.heax3.mobile-inputs-unity": ""
+  },
+  "author": {
+    "name": "HeaX3",
+    "email": "heax@moonsama.com",
+    "url": "https://www.moonsama.com"
+  }
+}
