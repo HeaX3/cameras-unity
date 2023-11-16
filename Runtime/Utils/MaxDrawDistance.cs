@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 
 namespace Cameras.Utils
@@ -38,7 +37,6 @@ namespace Cameras.Utils
 
         private void OnEnable()
         {
-            throw new NotImplementedException("Unfinished code");
             transform = base.transform;
             maxDrawDistanceSquared = maxDrawDistance * maxDrawDistance;
             if (referenceTransform) StartCoroutine(UpdateRoutine());
