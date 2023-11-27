@@ -150,7 +150,7 @@ namespace Cameras.Aspects
             RecalculateCurrentRelativeZoom();
             if (camera.camera.orthographic)
             {
-                modified.size = Mathf.SmoothStep(modified.distance, currentZoom, Time.deltaTime * zoomLerpSpeed);
+                modified.size = Mathf.SmoothStep(modified.size, currentZoom, Time.deltaTime * zoomLerpSpeed);
             }
             else
             {
