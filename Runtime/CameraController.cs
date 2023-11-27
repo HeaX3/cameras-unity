@@ -148,8 +148,8 @@ namespace Cameras
             _pivot.localPosition = state.offset;
             _pivot.localEulerAngles = new Vector3(state.rotation.x, state.rotation.y, 0);
             _cameraTransform.localPosition = new Vector3(state.shift.x, state.shift.y, -state.distance);
-            if (_camera.orthographic) _camera.fieldOfView = state.size;
-            else _camera.orthographicSize = state.size / 2;
+            if (_camera.orthographic) _camera.orthographicSize = state.size / 2;
+            else _camera.fieldOfView = state.size;
             stateUpdated(previous, state);
         }
 

@@ -148,7 +148,14 @@ namespace Cameras.Aspects
         public CameraState UpdateState(CameraState state, CameraState modified)
         {
             RecalculateCurrentRelativeZoom();
-            modified.distance = Mathf.SmoothStep(modified.distance, currentZoom, Time.deltaTime * zoomLerpSpeed);
+            if (camera.camera.orthographic)
+            {
+                modified.size = Mathf.SmoothStep(modified.distance, currentZoom, Time.deltaTime * zoomLerpSpeed);
+            }
+            else
+            {
+                modified.distance = Mathf.SmoothStep(modified.distance, currentZoom, Time.deltaTime * zoomLerpSpeed);
+            }
             return modified;
         }
 
