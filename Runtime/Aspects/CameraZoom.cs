@@ -4,6 +4,7 @@ using Cameras.Interfaces;
 using Essentials;
 using MobileInputs;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using Touch = UnityEngine.InputSystem.EnhancedTouch.Touch;
 
@@ -19,6 +20,7 @@ namespace Cameras.Aspects
         [SerializeField] private float _zoomLerpSpeed = 10;
         [SerializeField] private float _minZoomEventTimeInterval = 0.2f;
         [SerializeField] private Transform maxZoomAnchor;
+        [SerializeField] private UnityEvent<int> _onZoomChanged = new();
 
         private CameraInput input;
         InputAction pointAction;
@@ -44,6 +46,7 @@ namespace Cameras.Aspects
 
         public bool isZooming => Touch.activeTouches.Count > 1;
         protected float zoomLerpSpeed => _zoomLerpSpeed;
+        public UnityEvent<int> onZoomChanged => _onZoomChanged;
 
         public new CameraController camera { get; private set; }
 
@@ -131,18 +134,7 @@ namespace Cameras.Aspects
             currentZoomLevel = zoomLevel;
             currentZoom = minZoom + (maxZoom - minZoom) *
                 Mathf.Pow(1f / (maxZoomLevel - minZoomLevel) * currentZoomLevel, 2f);
-            // if (zoomLevel == maxZoomLevel)
-            // {
-            //     MessageTypeId.Area.SpeechBubbles.HideSpeechBubbles();
-            //     MessageTypeId.Area.TweetBubbles.HideSpeechBubbles();
-            //     MessageTypeId.Area.NameTags.HideNameTags();
-            // }
-            // else
-            // {
-            //     MessageTypeId.Area.SpeechBubbles.ShowSpeechBubbles();
-            //     MessageTypeId.Area.TweetBubbles.ShowSpeechBubbles();
-            //     MessageTypeId.Area.NameTags.ShowNameTags();
-            // }
+            onZoomChanged.Invoke(zoomLevel);
         }
 
         public CameraState UpdateState(CameraState state, CameraState modified)
@@ -156,6 +148,7 @@ namespace Cameras.Aspects
             {
                 modified.distance = Mathf.SmoothStep(modified.distance, currentZoom, Time.deltaTime * zoomLerpSpeed);
             }
+
             return modified;
         }
 
