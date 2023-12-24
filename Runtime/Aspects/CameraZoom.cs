@@ -29,8 +29,8 @@ namespace Cameras.Aspects
         public float minZoom => _zoomLimits.min;
         public float maxZoom => _zoomLimits.max;
 
-        private int minZoomLevel = 0;
-        private int maxZoomLevel => maxZoomAnchor ? 4 : 3;
+        public int minZoomLevel { get; private set; }
+        public int maxZoomLevel => maxZoomAnchor ? 4 : 3;
         private int currentZoomLevel = 2;
         public float currentRelativeZoom { get; private set; }
 
